@@ -2,7 +2,7 @@
 
 #######################################################
 #######################################################
-# 			Set paths and declare functions								#
+# 	Set paths and declare functions		      #
 #######################################################
 #######################################################
 i3PATH=~/.config/i3/config
@@ -26,10 +26,10 @@ setTMUX() {
 
 #######################################################
 #######################################################
-# 				Read arguments															#
+# 	Read arguments				      #
 #######################################################
 #######################################################
-# If not arguments supplied														#
+# If not arguments supplied			      #
 #######################################################
 if [ $# -eq 0 ]; then
 	echo "Run the script as follows: ./script option1 [option2] [option3] ..."
@@ -41,24 +41,23 @@ if [ $# -eq 0 ]; then
 	exit 0
 
 #######################################################
-# If arguments supplied																#
+# If arguments supplied				      #
 #######################################################
 else
 	for i in $@
 	do 
   	if [ "$i" == "i3" ]; then
-				setI3
+		setI3
 	
-		elif [ "$i" == "tmux" ]; then
-				setTMUX
+	elif [ "$i" == "tmux" ]; then
+		setTMUX
 
-		elif [ "$i" == "alacritty" ]; then
-				setALACRITTY
+	elif [ "$i" == "alacritty" ]; then
+		setALACRITTY
 
-		else
-				echo -e "Invalid option: $i\n"
-		fi
+	else
+		echo -e "Invalid option: $i\n"
+	fi
 	done
-
 	echo -e "Done!"
 fi
