@@ -2,7 +2,7 @@
 
 #######################################################
 #######################################################
-# 			Set paths and declare functions								#
+# 	Set paths and declare functions		      #
 #######################################################
 #######################################################
 i3PATH=~/.config/i3/config
@@ -48,12 +48,12 @@ fetchDUNST() {
 
 #######################################################
 #######################################################
-# 				Read arguments															#
+# 	Read arguments				      #
 #######################################################
 #######################################################
 while test $# -gt 0; do
 	case "$1" in
-    -h|--help)
+    		-h|--help)
 			echo "Run the script as follows: ./script [action] [argument1 argument2 ...] [action2] [argument1 argument2 ...]"
 			echo
 			echo "Possible actions are:"
@@ -97,23 +97,23 @@ while test $# -gt 0; do
 			for i in $@
 			do 	
   			if [ "$i" == "i3" ]; then
-					fetchI3
+				fetchI3
 	
-				elif [ "$i" == "tmux" ]; then
-					fetchTMUX
+			elif [ "$i" == "tmux" ]; then
+				fetchTMUX
 
-				elif [ "$i" == "alacritty" ]; then
-					fetchALACRITTY
+			elif [ "$i" == "alacritty" ]; then
+				fetchALACRITTY
 		
-				elif [ "$i" == "dunst" ]; then
-					fetchDUNST	
+			elif [ "$i" == "dunst" ]; then
+				fetchDUNST	
 
-				else
-					echo -e "Invalid option: $i\n"
+			else
+				echo -e "Invalid option: $i\n"
 		
-				fi
-				done
-				shift
+			fi
+			done
+			shift
 			;;
 		*)
 			echo "Please specify option!"
@@ -121,4 +121,3 @@ while test $# -gt 0; do
 			;;
 	esac
 done
-
