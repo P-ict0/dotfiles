@@ -1,17 +1,64 @@
 #!/bin/bash
 
+#######################################################
+#######################################################
+# 			Set paths and declare functions								#
+#######################################################
+#######################################################
 i3PATH=~/.config/i3/config
 alacrittyPATH=~/.config/alacritty/alacritty.yml
 tmuxPATH=~/.tmux.conf
 
-# Create backups and run
-mv $i3PATH ${i3PATH}.backup
-cp ${PWD}/i3/config $i3PATH
+setI3() {
+	mv $i3PATH ${i3PATH}.backup
+	cp ${PWD}/i3/config $i3PATH
+}
 
-mv $alacrittyPATH ${alacrittyPATH}.backup
-cp ${PWD}/alacritty/alacritty.yml $alacrittyPATH
+setALACRITTY() {
+	mv $alacrittyPATH ${alacrittyPATH}.backup
+	cp ${PWD}/alacritty/alacritty.yml $alacrittyPATH
+}
 
-mv $tmuxPATH ${tmuxPATH}.backup
-cp ${PWD}/tmux/.tmux.conf $tmuxPATH
+setTMUX() {
+	mv $tmuxPATH ${tmuxPATH}.backup
+	cp ${PWD}/tmux/.tmux.conf $tmuxPATH
+}
 
-echo -e "Done!\nBackups of old configs made in the same directory with extension '.backup'"
+#######################################################
+#######################################################
+# 				Read arguments															#
+#######################################################
+#######################################################
+# If not arguments supplied														#
+#######################################################
+if [ $# -eq 0 ]; then
+	echo "Run the script as follows: ./script option1 [option2] [option3] ..."
+	echo
+	echo "Possible options are:"
+	echo "i3"
+	echo "alacritty"
+	echo "tmux"
+	exit 0
+
+#######################################################
+# If arguments supplied																#
+#######################################################
+else
+	for i in $@
+	do 
+  	if [ "$i" == "i3" ]; then
+				setI3
+	
+		elif [ "$i" == "tmux" ]; then
+				setTMUX
+
+		elif [ "$i" == "alacritty" ]; then
+				setALACRITTY
+
+		else
+				echo -e "Invalid option: $i\n"
+		fi
+	done
+
+	echo -e "Done!"
+fi
