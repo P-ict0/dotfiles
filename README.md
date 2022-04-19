@@ -4,7 +4,7 @@ Here are my config files. This repo was made to facilitate configuration of usef
 ## Current programs are:
 - i3
 - Alacritty
+- Tmux
 
 ## To come:
-- tmux
 - nvim
