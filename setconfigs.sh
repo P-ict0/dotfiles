@@ -14,4 +14,4 @@ cp ${PWD}/alacritty/alacritty.yml $alacrittyPATH
 mv $tmuxPATH ${tmuxPATH}.backup
 cp ${PWD}/tmux/.tmux.conf $tmuxPATH
 
-echo "Done!\nbackups of old configs made in the same directory with extension '.backup'"
+echo -e "Done!\nBackups of old configs made in the same directory with extension '.backup'"
