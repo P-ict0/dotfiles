@@ -1,13 +1,13 @@
 # Dotfiles
 Here are my config files. This repo was made to facilitate configuration of useful programs when changing or reinstalling an OS.
 
-2 scripts are included: ```fetchconfigs``` copies the current programs config to the repo and ```setconfigs``` sets current repo configs to the programs and creates a backup of old configs
-
 # Easy setup
 Run scripts as follows:
 ```
 ./script
 ```
+ ```fetchconfigs```: Copies current configs from the system to the repo
+ ```setconfigs```: Updates current program configuration from the repo (and creates a backup of old config files)
 
 ## Current programs are:
 - i3
