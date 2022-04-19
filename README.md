@@ -6,7 +6,7 @@ Run scripts as follows:
 ```
 ./script
 ```
- ```fetchconfigs```: Copies current configs from the system to the repo\n
+ ```fetchconfigs```: Copies current configs from the system to the repo
  
  ```setconfigs```: Updates current program configuration from the repo (and creates a backup of old config files)
 
