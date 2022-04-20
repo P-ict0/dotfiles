@@ -9,6 +9,7 @@ i3PATH=~/.config/i3/config
 alacrittyPATH=~/.config/alacritty/alacritty.yml
 tmuxPATH=~/.tmux.conf
 dunstPATH=~/.config/dunst/dunstrc
+neofetchPATH=~/.config/neofetch/config.conf
 
 ## Functions: 
 # arg1 = 1: set
@@ -53,6 +54,15 @@ DUNST() {
 	fi
 }
 
+NEOFETCH() {
+	if [ "$1" -eq "1" ]; then
+		mv $neofetchPATH ${neofetchPATH}.backup
+		cp ${PWD}/neofetch/config.conf $neofetchPATH
+	
+	else
+		cp $neofetchPATH ${PWD}/neofetch/config.conf
+	fi
+}
 
 #######################################################
 #######################################################
@@ -75,6 +85,7 @@ do
 				echo "alacritty"
 				echo "tmux"
 				echo "dunst"
+				echo "neofetch"
 				exit 0
 				;;
 
@@ -90,6 +101,9 @@ do
 		
 			elif [ "$i" == "dunst" ]; then
 				DUNST	1
+
+			elif [ "$i" == "neofetch" ]; then
+				NEOFETCH 1
 
 			else
 				echo -e "Invalid option: $i\n"
@@ -109,6 +123,9 @@ do
 		
 			elif [ "$i" == "dunst" ]; then
 				DUNST	0
+
+			elif [ "$i" == "neofetch" ]; then
+				NEOFETCH 0
 
 			else
 				echo -e "Invalid option: $i\n"

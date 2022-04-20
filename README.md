@@ -11,8 +11,9 @@ The script can either:
 
 ## Current programs are:
 - i3
-- Alacritty
-- Tmux
+- alacritty
+- tmux
+- neofetch
 
 ## To come:
 - nvim
