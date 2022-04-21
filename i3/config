@@ -251,6 +251,8 @@ smart_gaps on
 bindsym $mod+shift+x exec "i3lock -i ~/Pictures/solarized_2.png" 
 bindsym $mod+shift+d exec i3-dmenu-desktop
 bindsym $mod+shift+s exec spectacle 
+bindsym $mod+shift+u exec "setxkbmap -layout us -variant intl"
+bindsym $mod+shift+o exec "setxkbmap -layout us"
 
 #remove titlebar
 new_window 1pixel
