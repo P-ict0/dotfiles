@@ -1,5 +1,5 @@
 [global]
-    ### Display ###
+    ### Display   ###
 
     # Which monitor should the notifications be displayed on.
     monitor = 0

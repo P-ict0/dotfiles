@@ -17,50 +17,50 @@ neofetchPATH=~/.config/neofetch/config.conf
 I3() {
 	if [ "$1" -eq "1" ]; then
 		mv $i3PATH ${i3PATH}.backup
-		cp ${PWD}/i3/config $i3PATH
+		cp i3/config $i3PATH
 	
 	else
-		cp $i3PATH ${PWD}/i3/config
+		cp $i3PATH i3/config
 	fi
 }
 
 TMUX() {
 	if [ "$1" -eq "1" ]; then
 		mv $tmuxPATH ${tmuxPATH}.backup
-		cp ${PWD}/tmux/.tmux.conf $tmuxPATH
+		cp tmux/.tmux.conf $tmuxPATH
 	
 	else
-		cp $tmuxPATH ${PWD}/tmux/.tmux.conf
+		cp $tmuxPATH tmux/.tmux.conf
 	fi
 }
 
 ALACRITTY() {
 	if [ "$1" -eq "1" ]; then
 		mv $alacrittyPATH ${alacrittyPATH}.backup
-		cp ${PWD}/alacritty/alacritty.yml $alacrittyPATH
+		cp alacritty/alacritty.yml $alacrittyPATH
 	
 	else
-		cp $alacrittyPATH ${PWD}/alacritty/alacritty.yml
+		cp $alacrittyPATH alacritty/alacritty.yml
 	fi
 }
 
 DUNST() {
 	if [ "$1" -eq "1" ]; then
 		mv $dunstPATH ${dunstPATH}.backup
-		cp ${PWD}/dunst/dunstrc $dunstPATH
+		cp dunst/dunstrc $dunstPATH
 	
 	else
-		cp $dunstPATH ${PWD}/dunst/dunstrc
+		cp $dunstPATH dunst/dunstrc
 	fi
 }
 
 NEOFETCH() {
 	if [ "$1" -eq "1" ]; then
 		mv $neofetchPATH ${neofetchPATH}.backup
-		cp ${PWD}/neofetch/config.conf $neofetchPATH
+		cp neofetch/config.conf $neofetchPATH
 	
 	else
-		cp $neofetchPATH ${PWD}/neofetch/config.conf
+		cp $neofetchPATH neofetch/config.conf
 	fi
 }
 
