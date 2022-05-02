@@ -225,7 +225,7 @@ bar {
 			tray_output none
 
         status_command bumblebee-status\
-				-m nic memory cpu battery pasink dunst date time \
+				-m layout nic memory cpu battery pasink dunst date time \
 		-p nic.exclude="enx9405bb1838aa ,lo" nic.format="{ip}" root.path=/ time.format="%H:%M" date.format="%a, %b %d [%Y]"\
 		-t solarized
 
