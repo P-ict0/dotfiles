@@ -2,7 +2,7 @@
 
 #######################################################
 #######################################################
-# 	Set paths and declare functions		      #
+# 	Set paths and declare functions		      		  #
 #######################################################
 #######################################################
 i3PATH=~/.config/i3/config
@@ -72,30 +72,30 @@ NEOFETCH() {
 
 #######################################################
 #######################################################
-# 	Read arguments				      #
+# 	Read arguments				      			      #
 #######################################################
 #######################################################
 while getopts hs:f: flag; do
     case "${flag}" in
     	h)
-				echo "Run the script as follows: ./script action [program]"
-				echo
-				echo "Possible actions are:"
-				echo "-s Sets configs from repo to system"
-				echo "-f Copies configs from system to repo"
-				echo "-h Prints the help section"
-				echo
-				echo "Possible program are:"
-				echo "i3"
-				echo "alacritty"
-				echo "tmux"
-				echo "dunst"
-				echo "neofetch"
-				exit 0
-				;;
+			echo "Run the script as follows: ./script action [program]"
+			echo
+			echo "Possible actions are:"
+			echo "-s Sets configs from repo to system"
+			echo "-f Copies configs from system to repo"
+			echo "-h Prints the help section"
+			echo
+			echo "Possible program are:"
+			echo "i3"
+			echo "alacritty"
+			echo "tmux"
+			echo "dunst"
+			echo "neofetch"
+			exit 0
+			;;
 
 		s)
-  		if [ "${OPTARG}" == "i3" ]; then
+  			if [ "${OPTARG}" == "i3" ]; then
 				I3 1
 	
 			elif [ "${OPTARG}" == "tmux" ]; then
@@ -117,7 +117,7 @@ while getopts hs:f: flag; do
 			;;
 
 		f)
-  		if [ "${OPTARG}" == "i3" ]; then
+  			if [ "${OPTARG}" == "i3" ]; then
 				I3 0
 	
 			elif [ "${OPTARG}" == "tmux" ]; then
