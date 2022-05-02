@@ -16,51 +16,57 @@ neofetchPATH=~/.config/neofetch/config.conf
 # arg1 = 0: fetch
 I3() {
 	if [ "$1" -eq "1" ]; then
-		mv $i3PATH ${i3PATH}.backup
-		cp i3/config $i3PATH
+		mv ${i3PATH} ${i3PATH}.backup
+		cp i3/config ${i3PATH}
+		echo "Set I3..."
 	
 	else
-		cp $i3PATH i3/config
+		cp ${i3PATH} i3/config
+		echo "Fetch I3..."
 	fi
 }
 
 TMUX() {
 	if [ "$1" -eq "1" ]; then
-		mv $tmuxPATH ${tmuxPATH}.backup
-		cp tmux/.tmux.conf $tmuxPATH
-	
+		mv ${tmuxPATH} ${tmuxPATH}.backup
+		cp tmux/.tmux.conf ${tmuxPATH}
+		echo "Set TMUX..."
 	else
-		cp $tmuxPATH tmux/.tmux.conf
+		cp ${tmuxPATH} tmux/.tmux.conf
+		echo "Fetch TMUX..."
 	fi
 }
 
 ALACRITTY() {
 	if [ "$1" -eq "1" ]; then
-		mv $alacrittyPATH ${alacrittyPATH}.backup
-		cp alacritty/alacritty.yml $alacrittyPATH
-	
+		mv ${alacrittyPATH} ${alacrittyPATH}.backup
+		cp alacritty/alacritty.yml ${alacrittyPATH}
+		echo "Set ALACRITTY..."
 	else
-		cp $alacrittyPATH alacritty/alacritty.yml
+		cp ${alacrittyPATH} alacritty/alacritty.yml
+		echo "Fetch ALACRITTY"
 	fi
 }
 
 DUNST() {
 	if [ "$1" -eq "1" ]; then
-		mv $dunstPATH ${dunstPATH}.backup
-		cp dunst/dunstrc $dunstPATH
-	
+		mv ${dunstPATH} ${dunstPATH}.backup
+		cp dunst/dunstrc ${dunstPATH}
+		echo "Set DUNST..."
 	else
-		cp $dunstPATH dunst/dunstrc
+		cp ${dunstPATH} dunst/dunstrc
+		echo "Fetch DUNST..."
 	fi
 }
 
 NEOFETCH() {
 	if [ "$1" -eq "1" ]; then
-		mv $neofetchPATH ${neofetchPATH}.backup
-		cp neofetch/config.conf $neofetchPATH
-	
+		mv ${neofetchPATH} ${neofetchPATH}.backup
+		cp neofetch/config.conf ${neofetchPATH}
+		echo "Set NEOFETCH..."
 	else
-		cp $neofetchPATH neofetch/config.conf
+		cp ${neofetchPATH} neofetch/config.conf
+		echo "Fetch NEOFETCH..."
 	fi
 }
 
@@ -69,10 +75,9 @@ NEOFETCH() {
 # 	Read arguments				      #
 #######################################################
 #######################################################
-while getopts hs:f: flag
-do
+while getopts hs:f: flag; do
     case "${flag}" in
-    	-h)
+    	h)
 				echo "Run the script as follows: ./script action [program]"
 				echo
 				echo "Possible actions are:"
@@ -89,46 +94,46 @@ do
 				exit 0
 				;;
 
-		-s)
-  		if [ "$i" == "i3" ]; then
+		s)
+  		if [ "${OPTARG}" == "i3" ]; then
 				I3 1
 	
-			elif [ "$i" == "tmux" ]; then
+			elif [ "${OPTARG}" == "tmux" ]; then
 				TMUX 1
 
-			elif [ "$i" == "alacritty" ]; then
+			elif [ "${OPTARG}" == "alacritty" ]; then
 				ALACRITTY 1
 		
-			elif [ "$i" == "dunst" ]; then
+			elif [ "${OPTARG}" == "dunst" ]; then
 				DUNST	1
 
-			elif [ "$i" == "neofetch" ]; then
+			elif [ "${OPTARG}" == "neofetch" ]; then
 				NEOFETCH 1
 
 			else
-				echo -e "Invalid option: $i\n"
+				echo -e "Invalid option: ${OPTARG}\n"
 				exit 0
 			fi
 			;;
 
-		-f)
-  		if [ "$i" == "i3" ]; then
+		f)
+  		if [ "${OPTARG}" == "i3" ]; then
 				I3 0
 	
-			elif [ "$i" == "tmux" ]; then
+			elif [ "${OPTARG}" == "tmux" ]; then
 				TMUX 0
 
-			elif [ "$i" == "alacritty" ]; then
+			elif [ "${OPTARG}" == "alacritty" ]; then
 				ALACRITTY 0
 		
-			elif [ "$i" == "dunst" ]; then
+			elif [ "${OPTARG}" == "dunst" ]; then
 				DUNST	0
 
-			elif [ "$i" == "neofetch" ]; then
+			elif [ "${OPTARG}" == "neofetch" ]; then
 				NEOFETCH 0
 
 			else
-				echo -e "Invalid option: $i\n"
+				echo -e "Invalid option: ${OPTARG}\n"
 				exit 0
 			fi
 			;;
