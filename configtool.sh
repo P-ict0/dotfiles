@@ -10,6 +10,7 @@ alacrittyPATH=~/.config/alacritty/alacritty.yml
 tmuxPATH=~/.tmux.conf
 dunstPATH=~/.config/dunst/dunstrc
 neofetchPATH=~/.config/neofetch/config.conf
+nvimDIRPATH=~/.config/nvim
 
 ## Functions: 
 # arg1 = 1: set
@@ -70,6 +71,18 @@ NEOFETCH() {
 	fi
 }
 
+NVIM() {
+	if [ "$1" -eq "1" ]; then
+		mv ${nvimDIRPATH} ${nvimDIRPATH}.backup
+		cp -r nvim ${nvimDIRPATH}
+		echo "Set NVIM..."
+	else
+		rm -rf nvim
+		cp -r ${nvimDIRPATH} .
+		echo "Fetch NVIM"
+	fi
+}
+
 #######################################################
 #######################################################
 # 	Read arguments				      			      #
@@ -91,6 +104,7 @@ while getopts hs:f: flag; do
 			echo "tmux"
 			echo "dunst"
 			echo "neofetch"
+			echo "nvim"
 			exit 0
 			;;
 
@@ -109,6 +123,9 @@ while getopts hs:f: flag; do
 
 			elif [ "${OPTARG}" == "neofetch" ]; then
 				NEOFETCH 1
+
+			elif [ "${OPTARG}" == "nvim" ]; then
+				NVIM 1
 
 			else
 				echo -e "Invalid option: ${OPTARG}\n"
@@ -131,6 +148,9 @@ while getopts hs:f: flag; do
 
 			elif [ "${OPTARG}" == "neofetch" ]; then
 				NEOFETCH 0
+
+			elif [ "${OPTARG}" == "nvim" ]; then
+				NVIM 0
 
 			else
 				echo -e "Invalid option: ${OPTARG}\n"
