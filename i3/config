@@ -118,16 +118,16 @@ bindsym $mod+a focus parent
 #set $ws9 "9 "
 #set $ws10 "10 "
 
-set $ws1 "1 [disc]"
-set $ws2 "2 [www]"
-set $ws3 "3 [spot]"
-set $ws4 "4 [git]"
-set $ws5 "5 [cal]"
-set $ws6 "6 [chat]"
-set $ws7 "7 [ter]"
-set $ws8 "8 [ter]"
-set $ws9 "9 [ter]"
-set $ws10 "10 [stat]"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -226,7 +226,7 @@ bar {
 
         status_command bumblebee-status\
 				-m layout nic memory cpu battery pasink dunst date time \
-		-p nic.exclude="enx9405bb1838aa ,lo" nic.format="{ip}" root.path=/ time.format="%H:%M" date.format="%a, %b %d [%Y]"\
+		-p nic.exclude="enx9405bb1838aa ,lo" nic.format="{ip}" root.path=/ time.format="%H:%M" date.format="%a, %b %d"\
 		-t solarized
 
 				colors {
