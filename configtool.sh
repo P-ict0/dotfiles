@@ -73,6 +73,7 @@ NEOFETCH() {
 
 NVIM() {
 	if [ "$1" -eq "1" ]; then
+		rm -rf ${nvimDIRPATH}.backup
 		mv ${nvimDIRPATH} ${nvimDIRPATH}.backup
 		cp -r nvim ${nvimDIRPATH}
 		echo "Set NVIM..."
