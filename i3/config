@@ -270,4 +270,4 @@ exec_always --no-startup-id "setxkbmap -option caps:swapescape"
 exec_always --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 exec xinput set-prop "SYNA307B:00 06CB:CD46 Touchpad" "libinput Tapping Enabled" 1
 exec xinput set-prop "SYNA307B:00 06CB:CD46 Touchpad" "libinput Natural Scrolling Enabled" 1
-
+exec --no-startup-id "alias sz='source ~/.zshrc'" 
