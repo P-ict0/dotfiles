@@ -11,6 +11,7 @@ tmuxPATH=~/.tmux.conf
 dunstPATH=~/.config/dunst/dunstrc
 neofetchPATH=~/.config/neofetch/config.conf
 nvimDIRPATH=~/.config/nvim
+htopPATH=~/.config/htop/htoprc
 
 ## Functions: 
 # arg1 = 1: set
@@ -19,11 +20,12 @@ I3() {
 	if [ "$1" -eq "1" ]; then
 		mv ${i3PATH} ${i3PATH}.backup
 		cp i3/config ${i3PATH}
-		echo "Set I3..."
+		echo "Setting I3..."
+		echo "Backup saved!"
 	
 	else
 		cp ${i3PATH} i3/config
-		echo "Fetch I3..."
+		echo "Fetching I3..."
 	fi
 }
 
@@ -31,10 +33,11 @@ TMUX() {
 	if [ "$1" -eq "1" ]; then
 		mv ${tmuxPATH} ${tmuxPATH}.backup
 		cp tmux/.tmux.conf ${tmuxPATH}
-		echo "Set TMUX..."
+		echo "Setting TMUX..."
+		echo "Backup saved!"
 	else
 		cp ${tmuxPATH} tmux/.tmux.conf
-		echo "Fetch TMUX..."
+		echo "Fetching TMUX..."
 	fi
 }
 
@@ -42,10 +45,11 @@ ALACRITTY() {
 	if [ "$1" -eq "1" ]; then
 		mv ${alacrittyPATH} ${alacrittyPATH}.backup
 		cp alacritty/alacritty.yml ${alacrittyPATH}
-		echo "Set ALACRITTY..."
+		echo "Setting ALACRITTY..."
+		echo "Backup saved!"
 	else
 		cp ${alacrittyPATH} alacritty/alacritty.yml
-		echo "Fetch ALACRITTY"
+		echo "Fetching ALACRITTY..."
 	fi
 }
 
@@ -53,10 +57,11 @@ DUNST() {
 	if [ "$1" -eq "1" ]; then
 		mv ${dunstPATH} ${dunstPATH}.backup
 		cp dunst/dunstrc ${dunstPATH}
-		echo "Set DUNST..."
+		echo "Setting DUNST..."
+		echo "Backup saved!"
 	else
 		cp ${dunstPATH} dunst/dunstrc
-		echo "Fetch DUNST..."
+		echo "Fetching DUNST..."
 	fi
 }
 
@@ -64,10 +69,11 @@ NEOFETCH() {
 	if [ "$1" -eq "1" ]; then
 		mv ${neofetchPATH} ${neofetchPATH}.backup
 		cp neofetch/config.conf ${neofetchPATH}
-		echo "Set NEOFETCH..."
+		echo "Setting NEOFETCH..."
+		echo "Backup saved!"
 	else
 		cp ${neofetchPATH} neofetch/config.conf
-		echo "Fetch NEOFETCH..."
+		echo "Fetching NEOFETCH..."
 	fi
 }
 
@@ -76,11 +82,25 @@ NVIM() {
 		rm -rf ${nvimDIRPATH}.backup
 		mv ${nvimDIRPATH} ${nvimDIRPATH}.backup
 		cp -r nvim ${nvimDIRPATH}
-		echo "Set NVIM..."
+		echo "Setting NVIM..."
+		echo "Backup saved!"
 	else
 		rm -rf nvim
 		cp -r ${nvimDIRPATH} .
-		echo "Fetch NVIM"
+		echo "Fetching NVIM"
+		echo "Backup saved!"
+	fi
+}
+
+HTOP() {
+	if [ "$1" -eq "1" ]; then
+			mv ${htopPATH} ${htopPATH}.backup
+			cp htop/htoprc ${htopPATH}
+			echo "Setting HTOP..."
+			echo "Backup saved!"
+		else
+			cp ${htopPATH} htop/htoprc
+			echo "Fetching HTOP..."
 	fi
 }
 
@@ -106,6 +126,7 @@ while getopts hs:f: flag; do
 			echo "dunst"
 			echo "neofetch"
 			echo "nvim"
+			echo "htop"
 			exit 0
 			;;
 
@@ -127,6 +148,9 @@ while getopts hs:f: flag; do
 
 			elif [ "${OPTARG}" == "nvim" ]; then
 				NVIM 1
+
+			elif ["${OPTARG}" == "htop" ]; then
+				HTOP 1
 
 			else
 				echo -e "Invalid option: ${OPTARG}\n"
@@ -152,6 +176,9 @@ while getopts hs:f: flag; do
 
 			elif [ "${OPTARG}" == "nvim" ]; then
 				NVIM 0
+			
+			elif [ "${OPTARG}" == "htop" ]; then
+				HTOP 0
 
 			else
 				echo -e "Invalid option: ${OPTARG}\n"
