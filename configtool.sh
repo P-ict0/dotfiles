@@ -104,29 +104,39 @@ HTOP() {
 	fi
 }
 
+help_message() {
+	echo "Run the script as follows: ./script action [program]"
+	echo
+	echo "Possible actions are:"
+	echo "-s Sets configs from repo to system"
+	echo "-f Copies configs from system to repo"
+	echo "-h Prints the help section"
+	echo
+	echo "Possible program are:"
+	echo "i3"
+	echo "alacritty"
+	echo "tmux"
+	echo "dunst"
+	echo "neofetch"
+	echo "nvim"
+	echo "htop"
+}
+
 #######################################################
 #######################################################
 # 	Read arguments				      			      #
 #######################################################
 #######################################################
+if [ $# -eq 0 ];
+then
+    help_message
+    exit 0
+fi
+
 while getopts hs:f: flag; do
     case "${flag}" in
     	h)
-			echo "Run the script as follows: ./script action [program]"
-			echo
-			echo "Possible actions are:"
-			echo "-s Sets configs from repo to system"
-			echo "-f Copies configs from system to repo"
-			echo "-h Prints the help section"
-			echo
-			echo "Possible program are:"
-			echo "i3"
-			echo "alacritty"
-			echo "tmux"
-			echo "dunst"
-			echo "neofetch"
-			echo "nvim"
-			echo "htop"
+			help_message
 			exit 0
 			;;
 
