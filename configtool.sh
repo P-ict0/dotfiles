@@ -159,7 +159,7 @@ while getopts hs:f: flag; do
 			elif [ "${OPTARG}" == "nvim" ]; then
 				NVIM 1
 
-			elif ["${OPTARG}" == "htop" ]; then
+			elif [ "${OPTARG}" == "htop" ]; then
 				HTOP 1
 
 			else
