@@ -230,6 +230,8 @@ input type:touchpad {
 bindsym $mod+Shift+z input type:keyboard xkb_variant ""
 bindsym $mod+Shift+a input type:keyboard xkb_variant intl
 
+bindsym $mod+c exec "~/.config/waybar/calculator.sh"
+
 # Startup programs
 exec "keepassxc"
 for_window [title="KeePassXC"] move scratchpad
