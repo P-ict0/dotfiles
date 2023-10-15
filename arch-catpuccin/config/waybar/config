@@ -1,0 +1,119 @@
+{
+    "position": "top", 
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["custom/spotify"],
+    "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock"],
+    // Modules configuration
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{icon}",
+	 	"persistent_workspaces": {
+	 		"1": [],
+	 		"2": [],
+	 		"3": [],
+	 		"4": [],
+	 		"5": [],
+	 		"6": [],
+	 		"7": [],
+	 		"8": [],
+	 		"9": [],
+	 		"10": []
+	},
+        "format-icons": {
+						"1": "󰏪",
+            "2": "",
+            "3": "",
+						"4": "󰨞",
+						"5": "󰃭",
+						"6": "",
+						"7": "",
+						"8": "",
+						"9": "",
+						"10": ""
+         }
+	},
+
+	"custom/spotify": {
+    "exec": "/usr/bin/python3 ~/.config/waybar/mediaplayer.py --player spotify",
+    "format": "{}",
+		"return-type": "json",
+    "on-click": "playerctl -p spotify play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+	},
+
+	"clock": {
+		"format": "<span foreground='#C6AAE8'></span> {:%a %d %b | %H:%M}",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "shift_down",
+                    "on-scroll-down": "shift_up"
+                    }
+	},
+
+	"battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15,
+        	},
+		    "format": "<span foreground='#B1E3AD'>{icon}</span> {capacity}%",
+		    "format-warning": "<span foreground='#B1E3AD'>{icon}</span> {capacity}%",
+		    "format-critical": "<span foreground='#E38C8F'>{icon}</span> {capacity}%",
+		    "format-charging": "<span foreground='#B1E3AD'></span> {capacity}%",
+		    "format-plugged": "<span foreground='#B1E3AD'></span> {capacity}%",
+		    "format-alt": "<span foreground='#B1E3AD'>{icon}</span> {time}",
+		    "format-full": "<span foreground='#B1E3AD'></span> {capacity}%",
+        	"format-icons": ["", "", "", "", ""],
+            "tooltip-format": "Time until full/empty: {time}"
+	},
+
+	"network": {
+        "format-icons": ["󰤠", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-wifi": "<span foreground='#F2CECF'>{icon}</span> {essid} ({ipaddr})",
+        "format-ethernet": "<span foreground='#F2CECF'>󰛳</span> Ethernet ({ipaddr})",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "<span foreground='#F2CECF'></span> Disconnected",
+		"tooltip-format-wifi": "Signal Strenght: {signalStrength} %"
+	},
+
+	"backlight": {
+        "format": "<span foreground='#EBDDAA'>{icon}</span> {percent}%",
+        "format-icons": [""],
+        "tooltip-format": "backlight",
+        "on-scroll-down": "light -U 2%",
+        "on-scroll-up": "light -A 2%",
+				"on-click": "light -S 100",
+        "on-click-right": "light -S 1"
+	},
+
+	"pulseaudio": {
+		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+		"format": "<span foreground='#8aadf4'>{icon}</span> {volume}%",
+        "format-muted": "<span foreground='#8aadf4'></span> Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 2,
+    },
+}

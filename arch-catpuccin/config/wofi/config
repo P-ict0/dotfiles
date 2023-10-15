@@ -1,0 +1,14 @@
+style=~/.config/wofi/style.css
+xoffset=500
+yoffset=290
+show=drun
+width=800
+height=400
+always_parse_args=true
+show_all=true
+print_command=true
+layer=overlay
+insensitive=true
+prompt=
+content_halign=left
+

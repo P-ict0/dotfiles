@@ -1,0 +1,259 @@
+# My programs
+exec mako
+exec dropbox
+
+# Set mod key
+set $mod Mod4
+
+# Font
+font MesloLGS NF 13
+
+# NM applet
+exec --no-startup-id nm-applet
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl s 350+
+bindsym XF86MonBrightnessDown exec brightnessctl s 350-
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# kill focused window
+bindsym $mod+Shift+q kill
+set 	$menu 	j4-dmenu-desktop --no-generic --dmenu="bemenu-run -i -l 7 --fn 'MesloLGS NF 17' --prompt 'launch: ' --fb '#303446' --ff '#81c8be' --nb '#303446' --nf '#f2d5cf' --tb '#303446' --hb '#303446' --tf '#ca9ee6' --hf '#8caaee' --nf '#f2d5cf' --af '#f2d5cf' --ab '#303446'" | xargs swaymsg exec --
+bindsym $mod+d exec $menu
+
+floating_modifier $mod normal
+
+# dismiss notifications
+bindsym 	Control+space 	exec 	makoctl dismiss
+bindsym --locked $mod+y   exec sh -c "notify-send -i '' '   Do Not Disturb enabled' && sleep 2 && makoctl set-mode do-not-disturb"
+bindsym --locked $mod+Shift+y   exec sh -c "makoctl set-mode default && notify-send -i '' '   Do Not Disturb disabled'"
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Resizing containers:
+bindsym 	$mod+alt+Left 	resize shrink 	width 	20px
+bindsym 	$mod+alt+Up 		resize grow 		height 	20px
+bindsym 	$mod+alt+Down 	resize shrink 	height 	20px
+bindsym 	$mod+alt+Right 	resize grow 		width 	20px
+
+# split in horizontal orientation
+#bindsym $mod+h splith
+#
+## split in vertical orientation
+#bindsym $mod+v splitv
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Windows workspaces
+for_window [class="Spotify"] move to workspace $ws3
+for_window [class="Code"] move to workspace $ws4
+for_window [class="pycharm"] move to workspace $ws4
+for_window [class="obsidian"] move to workspace $ws1
+
+# switch between present and previous workspace
+bindsym 	$mod+Tab 	workspace 	back_and_forth
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+#colors:
+set $bg-color 	         #2d2d2d
+set $inactive-bg-color   #1e1e1e
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #db6262
+
+# Color Class               Border      BG         FG
+client.focused             #1793D0   #1793D0    #FFFFFF
+client.focused_inactive    #000000   #333333    #FFFFFF
+client.unfocused           #000000   #333333    #FFFFFF
+client.urgent              #FF0000   #FF0000    #FF0000
+
+##Gaps
+for_window [class="^.*"] border pixel 2
+gaps outer 10
+gaps inner 10
+smart_borders on
+smart_gaps on
+
+#My key bindings
+set $lock "swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color dadae8 --key-hl-color d00e11 --line-color 332e41 --inside-color 332e41 --separator-color --grace 4 --fade-in 1"
+bindsym $mod+shift+x exec $lock 
+bindsym $mod+shift+s exec grim -g "$(slurp)" "$HOME/Screenshots/snippet_$(date '+%d%m%y_%H-%M-%S').png"
+bindsym $mod+Alt+s exec grim "$HOME/Screenshots/screenshot_$(date '+%d%m%y_%H-%M-%S').png"
+bindsym $mod+q exec "$HOME/.local/bin/wofi-emoji"
+
+#remove titlebar
+default_border none
+
+#Wallpaper
+output * bg ~/Wallpapers/arch-black-4k.png fill
+
+# Keymap
+input type:keyboard {
+	xkb_layout "us"
+	xkb_options "caps:swapescape"
+	repeat_delay 300
+	repeat_rate 50
+}
+
+input type:touchpad {
+    tap enabled
+    natural_scroll enabled
+}
+
+# Switch variants
+bindsym $mod+Shift+z input type:keyboard xkb_variant ""
+bindsym $mod+Shift+a input type:keyboard xkb_variant intl
+
+# Startup programs
+exec "keepassxc"
+for_window [title="KeePassXC"] move scratchpad
+bindsym $mod+p [title="KeePassXC"] scratchpad show
+
+for_window [title="WhatsApp"] move scratchpad
+bindsym $mod+minus [title="WhatsApp"] scratchpad show
+
+exec "Thunar"
+for_window [app_id="Thunar"] move scratchpad
+bindsym $mod+HOME [app_id="Thunar"] scratchpad show
+
+exec "signal-desktop"
+for_window [class="Signal"] move scratchpad
+bindsym $mod+equal [class="Signal"] scratchpad show
+
+
+exec spotify
+exec obsidian
+
+# status Bar:
+bar {
+	swaybar_command waybar
+	  }
+}
+
+include /etc/sway/config.d/*
