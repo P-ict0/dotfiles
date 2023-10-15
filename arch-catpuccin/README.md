@@ -2,11 +2,11 @@
 
 ## Base Look
 
-![Arch Linux base](./Images/base.jpeg)
+![Arch Linux base](./images/base.jpeg)
 
 ## Nvim development
 
-![Arch Linux nvim](./Images/nvim.png)
+![Arch Linux nvim](./images/nvim.png)
 
 ## Components:
 
@@ -21,3 +21,4 @@
 - **Notification Daemon**: [Mako](https://github.com/emersion/mako)
 - **Terminal Multiplexer**: [tmux](https://github.com/tmux/tmux)
 - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
+- **Lockscreen**: swaylock with [Calvin and Hobbes Wallpaper](./Wallpapers/calvin-and-hobbes.png)
