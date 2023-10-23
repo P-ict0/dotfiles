@@ -2,7 +2,7 @@
     "position": "top", 
     "modules-left": ["sway/workspaces"],
     "modules-center": ["custom/spotify"],
-    "modules-right": ["network", "pulseaudio", "backlight", "battery", "clock"],
+    "modules-right": ["custom/updates", "network", "pulseaudio", "backlight", "battery", "clock"],
     // Modules configuration
 	"sway/workspaces": {
 		"disable-scroll": true,
@@ -35,7 +35,7 @@
 	},
 
 	"custom/spotify": {
-    "exec": "/usr/bin/python3 ~/.config/waybar/mediaplayer.py --player spotify",
+    "exec": "/usr/bin/python3 ~/.local/scripts/mediaplayer.py --player spotify",
     "format": "{}",
 		"return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
@@ -66,6 +66,17 @@
                     }
 	},
 
+  "custom/updates": {
+       "format": "{icon} {}",
+       "return-type": "json",
+       "format-icons": {
+           "has-updates": "<span foreground='#B1E3AD'>󰂪</span>",
+           "updated": "<span foreground='#B1E3AD'>󰕥</span>"
+       },
+       "exec-if": "which waybar-module-pacman-updates",
+       "exec": "waybar-module-pacman-updates"
+   },
+
 	"battery": {
         "states": {
             "warning": 30,
@@ -76,6 +87,7 @@
 		    "format-critical": "<span foreground='#E38C8F'>{icon}</span> {capacity}%",
 		    "format-charging": "<span foreground='#B1E3AD'></span> {capacity}%",
 		    "format-plugged": "<span foreground='#B1E3AD'></span> {capacity}%",
+        "on-click":"bash ~/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i ~/.config/waybar/battery.png 'Capacity of battery:' ",
 		    "format-alt": "<span foreground='#B1E3AD'>{icon}</span> {time}",
 		    "format-full": "<span foreground='#B1E3AD'></span> {capacity}%",
         	"format-icons": ["", "", "", "", ""],
@@ -84,11 +96,12 @@
 
 	"network": {
         "format-icons": ["󰤠", "󰤟", "󰤢", "󰤥", "󰤨"],
-        "format-wifi": "<span foreground='#F2CECF'>{icon}</span> {essid} ({ipaddr})",
-        "format-ethernet": "<span foreground='#F2CECF'>󰛳</span> Ethernet ({ipaddr})",
+        "format-wifi": "<span foreground='#F2CECF'>{icon}</span> {essid} ({signalStrength}%)",
+        "on-click":"alacritty -e 'nmtui'",
+        "format-ethernet": "<span foreground='#F2CECF'>󰛳</span> Ethernet",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "<span foreground='#F2CECF'></span> Disconnected",
-		"tooltip-format-wifi": "Signal Strenght: {signalStrength} %"
+		    "tooltip-format-wifi": "IP: {ipaddr}",
 	},
 
 	"backlight": {

@@ -3,6 +3,6 @@ bemenu --prompt 'enter expression' -i -l 7 --fn 'MesloLGS NF 20' --fb '#303446' 
 sed -i 's/^/print(/' /tmp/question && sed -i 's/$/)/' /tmp/question
 cat /tmp/question | lua /tmp/question >/tmp/answer
 sed -i 's/^/‎/' /tmp/answer
-cat /tmp/answer | xargs -n 1 notify-send -i ~/.config/waybar/calculator.png 'And the answer is...'
+cat /tmp/answer | xargs -n 1 notify-send -i ~/.config/waybar/calculator.png -t 99999999 'And the answer is...'
 cat /tmp/answer | wl-copy -n
 rm -f /tmp/question /tmp/answer
