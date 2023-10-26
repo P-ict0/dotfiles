@@ -44,7 +44,7 @@
 	},
 
 	"clock": {
-		"format": "<span foreground='#C6AAE8'></span> {:%a %d %b | %H:%M}",
+		"format": "<span foreground='#C6AAE8'>󰥔</span> {:%a %d %b | %H:%M}",
         "tooltip-format": "<tt><big>{calendar}</big></tt>",
         "calendar": {
                     "mode"          : "month",
@@ -61,8 +61,8 @@
                     },
         "actions":  {
                     "on-click-right": "mode",
-                    "on-scroll-up": "shift_down",
-                    "on-scroll-down": "shift_up"
+                    "on-scroll-down": "shift_down",
+                    "on-scroll-up": "shift_up"
                     }
 	},
 
@@ -74,7 +74,7 @@
            "updated": "<span foreground='#B1E3AD'>󰕥</span>"
        },
        "exec-if": "which waybar-module-pacman-updates",
-       "exec": "waybar-module-pacman-updates"
+       "exec": "waybar-module-pacman-updates",
    },
 
 	"battery": {
@@ -89,25 +89,25 @@
 		    "format-plugged": "<span foreground='#B1E3AD'></span> {capacity}%",
         "on-click":"bash ~/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i ~/.config/waybar/battery.png 'Capacity of battery:' ",
 		    "format-alt": "<span foreground='#B1E3AD'>{icon}</span> {time}",
-		    "format-full": "<span foreground='#B1E3AD'></span> {capacity}%",
-        	"format-icons": ["", "", "", "", ""],
+		    "format-full": "<span foreground='#B1E3AD'>󰣐</span> {capacity}%",
+        	"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "tooltip-format": "Time until full/empty: {time}"
 	},
 
 	"network": {
-        "format-icons": ["󰤠", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "format-icons": ["󰤫", "󰤠", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-wifi": "<span foreground='#F2CECF'>{icon}</span> {essid} ({signalStrength}%)",
         "on-click":"alacritty -e 'nmtui'",
         "format-ethernet": "<span foreground='#F2CECF'>󰛳</span> Ethernet",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span foreground='#F2CECF'></span> Disconnected",
+        "format-disconnected": "<span foreground='#F2CECF'>󰤭</span> Disconnected",
 		    "tooltip-format-wifi": "IP: {ipaddr}",
 	},
 
 	"backlight": {
         "format": "<span foreground='#EBDDAA'>{icon}</span> {percent}%",
-        "format-icons": [""],
-        "tooltip-format": "backlight",
+        "format-icons": ["󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+        "tooltip-format": "Backlight",
         "on-scroll-down": "light -U 2%",
         "on-scroll-up": "light -A 2%",
 				"on-click": "light -S 100",
@@ -116,17 +116,18 @@
 
 	"pulseaudio": {
 		"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right":"blueman-manager",
 		"format": "<span foreground='#8aadf4'>{icon}</span> {volume}%",
-        "format-muted": "<span foreground='#8aadf4'></span> Muted",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
+    "format-muted": "<span foreground='#8aadf4'></span> Muted",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "󰋋",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+    },
         "scroll-step": 2,
     },
 }

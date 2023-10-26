@@ -129,6 +129,7 @@ for_window [class="Spotify"] move to workspace $ws3
 for_window [class="Code"] move to workspace $ws4
 for_window [class="pycharm"] move to workspace $ws4
 for_window [class="obsidian"] move to workspace $ws1
+for_window [title="Google Calendar"] move to workspace $ws5
 
 # switch between present and previous workspace
 bindsym 	$mod+Tab 	workspace 	back_and_forth
@@ -205,7 +206,7 @@ set $lock "swaylock --screenshots --clock --indicator --indicator-radius 100 --i
 bindsym $mod+shift+x exec $lock 
 bindsym $mod+shift+s exec grim -g "$(slurp)" "$HOME/Screenshots/snippet_$(date '+%d%m%y_%H-%M-%S').png"
 bindsym $mod+Alt+s exec grim "$HOME/Screenshots/screenshot_$(date '+%d%m%y_%H-%M-%S').png"
-bindsym $mod+q exec "$HOME/.local/bin/wofi-emoji"
+bindsym $mod+q exec "$HOME/.local/scripts/wofi-emoji"
 
 #remove titlebar
 default_border none
