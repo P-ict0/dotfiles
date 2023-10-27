@@ -6,7 +6,7 @@
 
 ## Music
 
-![Music](./images/music.jpeg)
+![Music](./images/music.png)
 ## Nvim development
 
 ![Arch Linux nvim](./images/nvim.png)
