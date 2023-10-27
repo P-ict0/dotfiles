@@ -4,6 +4,9 @@
 
 ![Arch Linux base](./images/base.jpeg)
 
+## Music
+
+![Music](./images/music.jpeg)
 ## Nvim development
 
 ![Arch Linux nvim](./images/nvim.png)
@@ -22,3 +25,4 @@
 - **Terminal Multiplexer**: [tmux](https://github.com/tmux/tmux)
 - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
 - **Lockscreen**: swaylock with [Calvin and Hobbes Wallpaper](./Wallpapers/calvin-and-hobbes.png)
+
