@@ -4,6 +4,6 @@ Welcome! these are the dotfiles that I use eveyday on my system. Feel free to us
 
 ## [Arch Linux Catppucin](./arch-catpuccin/README.md)
 
-![Arch Linux Catppucin](./arch-catpuccin/images/base.jpeg)
+![Clean Arch](./arch-catpuccin/images/base.jpeg)
 
 Thanks to [Lokesh Krishna](https://github.com/lokesh-krishna/dotfiles/tree/main/catppuccin) for the inspiration 😀
