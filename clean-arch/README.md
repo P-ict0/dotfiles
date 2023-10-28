@@ -10,7 +10,7 @@
 
 ## Nvim Base
 
-![Nvim base](./images/nvim-base.png)
+![Nvim base](./images/nvim_base.png)
 
 
 ## Nvim development
