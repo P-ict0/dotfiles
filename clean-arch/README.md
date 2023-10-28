@@ -7,9 +7,16 @@
 ## Music
 
 ![Music](./images/music.png)
+
+## Nvim Base
+
+![Nvim base](./images/nvim-base.png)
+
+
 ## Nvim development
 
 ![Arch Linux nvim](./images/nvim.png)
+
 
 ## Components:
 
