@@ -24,7 +24,7 @@
 - **WM**: [Sway](https://swaywm.org/)
 - **Shell**: [Fish](https://fishshell.com/)
 - **Terminal**: [Alacritty](https://alacritty.org/)
-- **Editor**: [Neovim](https://neovim.io/)
+- **Editor**: [Neovim (lazynvim)](https://neovim.io/)
 - **File Manager**: [nnn](https://github.com/jarun/nnn)
 - **Launcher**: bemenu
 - **Emoji Picker**: wofi
