@@ -32,4 +32,5 @@
 - **Terminal Multiplexer**: [tmux](https://github.com/tmux/tmux)
 - **Bar**: [Waybar](https://github.com/Alexays/Waybar)
 - **Lockscreen**: swaylock with [Calvin and Hobbes Wallpaper](./Wallpapers/calvin-and-hobbes.png)
+- **Music Visualizer**: [Cava](https://github.com/karlstav/cava)
 

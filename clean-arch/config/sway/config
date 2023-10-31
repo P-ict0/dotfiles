@@ -25,7 +25,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl s 350-
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty -e tmux
+bindsym $mod+Shift+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -204,8 +205,8 @@ smart_gaps on
 #My key bindings
 set $lock "swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 10 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color dadae8 --key-hl-color d00e11 --line-color 332e41 --inside-color 332e41 --separator-color --grace 4 --fade-in 1"
 bindsym $mod+shift+x exec $lock 
-bindsym $mod+shift+s exec grim -g "$(slurp)" "$HOME/Screenshots/snippet_$(date '+%d%m%y_%H-%M-%S').png"
-bindsym $mod+Alt+s exec grim "$HOME/Screenshots/screenshot_$(date '+%d%m%y_%H-%M-%S').png"
+bindsym $mod+shift+s exec IMG="$HOME/Screenshots/snippet_$(date '+%d%m%y_%H-%M-%S').png" && grim -g "$(slurp -d)" $IMG && wl-copy -t image/png < $IMG && notify-send -i ~/.config/sway/snippet.png "Snippet saved" "\n$IMG"
+bindsym $mod+Alt+s exec IMG="$HOME/Screenshots/screenshot_$(date '+%d%m%y_%H-%M-%S').png" && grim $IMG && wl-copy -t image/png < $IMG && notify-send -i ~/.config/sway/snippet.png "Screenshot saved" "\n$IMG"
 bindsym $mod+q exec "$HOME/.local/scripts/wofi-emoji"
 
 #remove titlebar
@@ -231,7 +232,7 @@ input type:touchpad {
 bindsym $mod+Shift+z input type:keyboard xkb_variant ""
 bindsym $mod+Shift+a input type:keyboard xkb_variant intl
 
-bindsym $mod+c exec "~/.config/waybar/calculator.sh"
+bindsym $mod+c exec "$HOME/.local/scripts/calculator.sh"
 
 # Startup programs
 exec "keepassxc"
@@ -240,6 +241,7 @@ bindsym $mod+p [title="KeePassXC"] scratchpad show
 
 for_window [title="WhatsApp"] move scratchpad
 bindsym $mod+minus [title="WhatsApp"] scratchpad show
+
 
 exec "Thunar"
 for_window [app_id="Thunar"] move scratchpad

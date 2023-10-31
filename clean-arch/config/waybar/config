@@ -2,7 +2,7 @@
     "position": "top", 
     "modules-left": ["sway/workspaces"],
     "modules-center": ["custom/spotify"],
-    "modules-right": ["custom/updates", "network", "pulseaudio", "backlight", "battery", "clock"],
+    "modules-right": ["cava", "network", "pulseaudio", "backlight", "battery", "clock"],
     // Modules configuration
 	"sway/workspaces": {
 		"disable-scroll": true,
@@ -30,12 +30,12 @@
 						"7": "",
 						"8": "",
 						"9": "",
-						"10": ""
+						"10": "󰟌"
          }
 	},
 
 	"custom/spotify": {
-    "exec": "/usr/bin/python3 ~/.local/scripts/mediaplayer.py --player spotify",
+    "exec": "/usr/bin/python3 $HOME/.local/scripts/mediaplayer.py --player spotify",
     "format": "{}",
 		"return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
@@ -66,17 +66,6 @@
                     }
 	},
 
-  "custom/updates": {
-       "format": "{icon} {}",
-       "return-type": "json",
-       "format-icons": {
-           "has-updates": "<span foreground='#B1E3AD'>󰂪</span>",
-           "updated": "<span foreground='#B1E3AD'>󰕥</span>"
-       },
-       "exec-if": "which waybar-module-pacman-updates",
-       "exec": "waybar-module-pacman-updates",
-   },
-
 	"battery": {
         "states": {
             "warning": 30,
@@ -85,12 +74,12 @@
 		    "format": "<span foreground='#B1E3AD'>{icon}</span> {capacity}%",
 		    "format-warning": "<span foreground='#B1E3AD'>{icon}</span> {capacity}%",
 		    "format-critical": "<span foreground='#E38C8F'>{icon}</span> {capacity}%",
-		    "format-charging": "<span foreground='#B1E3AD'></span> {capacity}%",
-		    "format-plugged": "<span foreground='#B1E3AD'></span> {capacity}%",
-        "on-click":"bash ~/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i ~/.config/waybar/battery.png 'Capacity of battery:' ",
+		    "format-charging": "<span foreground='#B1E3AD'>󱐋{icon}</span> {capacity}%",
+		    "format-plugged": "<span foreground='#B1E3AD'>󱐋{icon}</span> {capacity}%",
+        "on-click-right":"bash $HOME/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i $HOME/.config/waybar/battery.png 'Capacity of battery:' ",
 		    "format-alt": "<span foreground='#B1E3AD'>{icon}</span> {time}",
 		    "format-full": "<span foreground='#B1E3AD'>󰣐</span> {capacity}%",
-        	"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "tooltip-format": "Time until full/empty: {time}"
 	},
 

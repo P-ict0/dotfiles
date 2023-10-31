@@ -10,6 +10,7 @@ return {
       "json",
       "bash",
       "markdown",
+      "markdown_inline",
       "regex",
       "yaml",
     },
