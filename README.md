@@ -6,4 +6,4 @@ Welcome! these are the dotfiles that I use eveyday on my system. Feel free to us
 
 ![Clean Arch](./clean-arch/images/base.jpeg)
 
-Thanks to [Lokesh Krishna](https://github.com/lokesh-krishna/dotfiles/tree/main/catppuccin) for the inspiration 😀
+Thanks to [Lokesh Krishna](https://github.com/P-ict0/dotfiles/tree/main/clean-arch) for the inspiration 😀
