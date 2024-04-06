@@ -29,13 +29,13 @@
 						"6": "",
 						"7": "",
 						"8": "",
-						"9": "",
-						"10": "󰟌"
+						"9": "",
+						"10": ""
          }
 	},
 
 	"custom/spotify": {
-    "exec": "/usr/bin/python3 ~/.local/scripts/mediaplayer.py --player spotify",
+    "exec": "/usr/bin/python3 /home/rodri/.local/scripts/mediaplayer.py --player spotify",
     "format": "{}",
 		"return-type": "json",
     "on-click": "playerctl -p spotify play-pause",
@@ -76,7 +76,7 @@
 		    "format-critical": "<span foreground='#E38C8F'>{icon}</span> {capacity}%",
 		    "format-charging": "<span foreground='#B1E3AD'>󱐋{icon}</span> {capacity}%",
 		    "format-plugged": "<span foreground='#B1E3AD'>󱐋{icon}</span> {capacity}%",
-        "on-click-right":"bash ~/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i ~/.config/waybar/battery.png 'Capacity of battery:' ",
+        "on-click-right":"bash /home/rodri/.local/scripts/get-battery-capacity.sh | xargs -n 1 notify-send -i /home/rodri/.config/waybar/battery.png 'Capacity of battery:' ",
 		    "format-alt": "<span foreground='#B1E3AD'>{icon}</span> {time}",
 		    "format-full": "<span foreground='#B1E3AD'>󰣐</span> {capacity}%",
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
@@ -86,8 +86,8 @@
 	"network": {
         "format-icons": ["󰤫", "󰤠", "󰤟", "󰤢", "󰤥", "󰤨"],
         "format-wifi": "<span foreground='#F2CECF'>{icon}</span> {essid} ({signalStrength}%)",
-        "on-click":"alacritty -e 'nmtui'",
-        "on-click-right":"firefox https://www.speedtest.net/ && swaymsg workspace number 2",
+        "on-click":"alacritty -e 'nmtui-connect'",
+        "on-click-right":"firefox --new-window https://www.speedtest.net/",
         "format-ethernet": "<span foreground='#F2CECF'>󰛳</span> Ethernet",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "<span foreground='#F2CECF'>󰤭</span> Disconnected",
@@ -116,7 +116,7 @@
         "phone": "",
         "portable": "",
         "car": "",
-        "default": ["", "", ""]
+        "default": ["", "", "󰕾", ""]
     },
         "scroll-step": 2,
     },

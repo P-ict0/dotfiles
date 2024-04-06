@@ -126,7 +126,7 @@ for_window [class="Spotify"] move to workspace $ws3
 for_window [class="Code"] move to workspace $ws4
 for_window [class="pycharm"] move to workspace $ws4
 for_window [class="discord"] move to workspace $ws1
-for_window [class="notion"] move to workspace $ws9
+for_window [class="Notion"] move to workspace $ws10
 for_window [class="thunderbird"] move to workspace $ws5
 
 # switch between present and previous workspace
@@ -226,20 +226,16 @@ input type:touchpad {
 bindsym $mod+Shift+z input type:keyboard xkb_variant ""
 bindsym $mod+Shift+a input type:keyboard xkb_variant intl
 
-bindsym $mod+o exec "~/.local/scripts/calculator.sh"
+bindsym $mod+c exec "/home/rodri/.local/scripts/calculator.sh"
 
 # Startup programs
 exec "keepassxc"
 for_window [title="KeePassXC"] move scratchpad
 bindsym $mod+p [title="KeePassXC"] scratchpad show
 
-exec "firefox --new-window web.whatsapp.com"
-for_window [title="WhatsApp"] floating enable, resize set width 1366 height 900, move scratchpad
-bindsym $mod+minus [title="WhatsApp"] scratchpad show
-
-exec "firefox --new-window chat.openai.com"
-for_window [title="ChatGPT"] floating enable, resize set width 1366 height 900, move scratchpad
-bindsym $mod+c [title="ChatGPT"] scratchpad show
+exec whatsdesk
+for_window [class="whatsdesk"] floating enable, resize set width 1366 height 900, move scratchpad
+bindsym $mod+minus [class="whatsdesk"] scratchpad show
 
 exec "Thunar"
 for_window [app_id="Thunar"] floating enable, resize set width 1366 height 900, move scratchpad
@@ -257,7 +253,6 @@ bar {
 	  }
 
 exec mako
-exec discord
 exec spotify
 exec notion-app
 exec thunderbird
