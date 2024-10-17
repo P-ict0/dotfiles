@@ -1,0 +1,9 @@
+
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 ~/scripts/mediaplayer.py --player spotify",
+        "format": "{}",
+	"return-type": "json",
+    	"on-click": "playerctl -p spotify play-pause",
+    	"on-scroll-up": "playerctl next",
+    	"on-scroll-down": "playerctl previous"
+    },
