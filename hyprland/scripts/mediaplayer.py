@@ -8,8 +8,45 @@ import logging
 import sys
 import signal
 import json
+import random
 
 logger = logging.getLogger(__name__)
+quote_timer_id = None  # Global variable to keep track of the quote timer
+
+def get_random_quote():
+    quotes = [
+        "This too shall pass.",
+        "I use Arch, btw.",
+        "Criticism comes easier than craftsmanship.",
+        "I owe the public nothing.",
+        "Call on God, but row away from the rocks.",
+        "Something unpleasant is coming when men are anxious to tell the truth.",
+        "No good deed comes unpunished.",
+        "All laws are simulations of reality.",
+        "Violence is a sword that has no handle -- you have to hold the blade.",
+        "If you refuse to accept anything but the best you very often get it.",
+        "Keep going, you're doing great!.",
+        "Believe in yourself.",
+        "Success starts with the first step.",
+        "Stay positive, work hard, make it happen.",
+        "Dream big, work hard.",
+        "Every day is a fresh start.",
+        "Small progress is still progress.",
+        "Make today count.",
+        "Embrace the journey.",
+        "Do the hard work, especially when you don't want to.",
+    ]
+    random_quote = random.choice(quotes)
+
+    output = {
+        "text": f"<b>{random_quote}</b>",
+        "class": "no-player",
+        "alt": "No Player",
+    }
+    sys.stdout.write(json.dumps(output) + "\n")
+    sys.stdout.flush()
+
+    return True
 
 
 def write_output(track, artist, playing, player):
@@ -17,8 +54,8 @@ def write_output(track, artist, playing, player):
 
     output = "" if playing else "  "
 
-    if len(track) + len(artist) > 80:
-        track = f"{track[:25]}..."
+    if len(track) + len(artist) > 100:
+        track = f"{track[:60]}..."
 
     if track and not artist:
         output = f"{output}  <b>{track}</b>"
@@ -32,7 +69,7 @@ def write_output(track, artist, playing, player):
         "class": "custom-" + player.props.player_name,
         "alt": player.props.player_name,
     }
-    
+
     sys.stdout.write(json.dumps(output) + "\n")
     sys.stdout.flush()
 
@@ -61,19 +98,31 @@ def on_metadata(player, metadata, manager):
 
 
 def on_player_appeared(manager, player, selected_player=None):
+    global quote_timer_id
     if player is not None and (
         selected_player is None or player.name == selected_player
     ):
+        stop_quote_timer()  # Stop quotes when a player appears
         init_player(manager, player)
     else:
         logger.debug("New player appeared, but it's not the selected player, skipping")
 
 
-def on_player_vanished(manager, player):
+def on_player_vanished(manager, player, loop):
     logger.info("Player has vanished")
-    sys.stdout.write("\n")
-    sys.stdout.flush()
+    get_random_quote()
+    start_quote_timer(loop)
 
+def start_quote_timer(loop):
+    global quote_timer_id
+    # Every 10 minutes
+    quote_timer_id = GLib.timeout_add_seconds(600, get_random_quote, priority=GLib.PRIORITY_DEFAULT)
+
+def stop_quote_timer():
+    global quote_timer_id
+    if quote_timer_id:
+        GLib.source_remove(quote_timer_id)
+        quote_timer_id = None
 
 def init_player(manager, name):
     logger.debug("Initialize player: {player}".format(player=name.name))
@@ -106,6 +155,7 @@ def parse_arguments():
 
 def main():
     arguments = parse_arguments()
+    player_found = False
 
     # Initialize logging
     logging.basicConfig(
@@ -127,7 +177,7 @@ def main():
     manager.connect(
         "name-appeared", lambda *args: on_player_appeared(*args, arguments.player)
     )
-    manager.connect("player-vanished", on_player_vanished)
+    manager.connect("player-vanished", lambda *args: on_player_vanished(*args, loop))
 
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
@@ -143,6 +193,12 @@ def main():
             continue
 
         init_player(manager, player)
+        player_found = True
+    
+    # If no player is found, generate a random string and display it
+    if not player_found:
+        get_random_quote()
+        start_quote_timer(loop)
 
     loop.run()
 
