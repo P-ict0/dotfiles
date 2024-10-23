@@ -1,6 +1,6 @@
 "custom/cava": {
-	"format": "{}",
-	"exec": "waybar_cava.sh --width 10 --mode 3",
-	"restart-interval": 1,
-	"hide-empty": true
-}
+  "format": "{}",
+  "exec": "waybar_cava.sh --width 10 --mode 3",
+  "restart-interval": 1,
+  "hide-empty": true,
+},

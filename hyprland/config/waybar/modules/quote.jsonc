@@ -1,0 +1,6 @@
+"custom/quote": {
+  "exec": "/usr/bin/python3 $HOME/scripts/get_random_quote.py",
+  "format": "{}",
+  "return-type": "json",
+  "interval": 1800,
+},

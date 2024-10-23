@@ -8,68 +8,41 @@ import logging
 import sys
 import signal
 import json
-import random
 
 logger = logging.getLogger(__name__)
 quote_timer_id = None  # Global variable to keep track of the quote timer
-
-def get_random_quote():
-    quotes = [
-        "This too shall pass.",
-        "I use Arch, btw.",
-        "Criticism comes easier than craftsmanship.",
-        "I owe the public nothing.",
-        "Call on God, but row away from the rocks.",
-        "Something unpleasant is coming when men are anxious to tell the truth.",
-        "No good deed comes unpunished.",
-        "All laws are simulations of reality.",
-        "Violence is a sword that has no handle -- you have to hold the blade.",
-        "If you refuse to accept anything but the best you very often get it.",
-        "Keep going, you're doing great!.",
-        "Believe in yourself.",
-        "Success starts with the first step.",
-        "Stay positive, work hard, make it happen.",
-        "Dream big, work hard.",
-        "Every day is a fresh start.",
-        "Small progress is still progress.",
-        "Make today count.",
-        "Embrace the journey.",
-        "Do the hard work, especially when you don't want to.",
-    ]
-    random_quote = random.choice(quotes)
-
-    output = {
-        "text": f"<b>{random_quote}</b>",
-        "class": "no-player",
-        "alt": "No Player",
-    }
-    sys.stdout.write(json.dumps(output) + "\n")
-    sys.stdout.flush()
-
-    return True
 
 
 def write_output(track, artist, playing, player):
     logger.info("Writing output")
 
     output = "" if playing else "  "
+    max_length = 70  # Maximum combined length of track + artist
 
-    if len(track) + len(artist) > 100:
-        track = f"{track[:60]}..."
+    # Calculate the total length and truncate track if necessary
+    total_length = len(track) + len(artist)
+    if total_length > max_length:
+        available_length = max(0, max_length - len(artist))
+        track = (
+            f"{track[:available_length]}..." if len(track) > available_length else track
+        )
 
+    # Generate the output based on the presence of track and artist
     if track and not artist:
         output = f"{output}  <b>{track}</b>"
     elif track and artist:
-        output = f"{output}  <i>{artist}</i> - <b>{track}</b>"
+        output = f"{output}  <i>{artist}</i> ~ <b>{track}</b>"
     else:
         output = "<b>Nothing playing</b>"
 
+    # Prepare the output dictionary
     output = {
         "text": output,
         "class": "custom-" + player.props.player_name,
         "alt": player.props.player_name,
     }
 
+    # Write the output as JSON to stdout
     sys.stdout.write(json.dumps(output) + "\n")
     sys.stdout.flush()
 
@@ -102,7 +75,6 @@ def on_player_appeared(manager, player, selected_player=None):
     if player is not None and (
         selected_player is None or player.name == selected_player
     ):
-        stop_quote_timer()  # Stop quotes when a player appears
         init_player(manager, player)
     else:
         logger.debug("New player appeared, but it's not the selected player, skipping")
@@ -110,19 +82,15 @@ def on_player_appeared(manager, player, selected_player=None):
 
 def on_player_vanished(manager, player, loop):
     logger.info("Player has vanished")
-    get_random_quote()
-    start_quote_timer(loop)
+    output = {
+        "text": "  Spotify",
+        "class": "custom-nothing-playing",
+        "alt": "spotify-closed",
+    }
 
-def start_quote_timer(loop):
-    global quote_timer_id
-    # Every 10 minutes
-    quote_timer_id = GLib.timeout_add_seconds(600, get_random_quote, priority=GLib.PRIORITY_DEFAULT)
+    sys.stdout.write(json.dumps(output) + "\n")
+    sys.stdout.flush()
 
-def stop_quote_timer():
-    global quote_timer_id
-    if quote_timer_id:
-        GLib.source_remove(quote_timer_id)
-        quote_timer_id = None
 
 def init_player(manager, name):
     logger.debug("Initialize player: {player}".format(player=name.name))
@@ -194,11 +162,17 @@ def main():
 
         init_player(manager, player)
         player_found = True
-    
+
     # If no player is found, generate a random string and display it
     if not player_found:
-        get_random_quote()
-        start_quote_timer(loop)
+        output = {
+            "text": "  Spotify",
+            "class": "custom-nothing-playing",
+            "alt": "spotify-closed",
+        }
+
+        sys.stdout.write(json.dumps(output) + "\n")
+        sys.stdout.flush()
 
     loop.run()
 
