@@ -16,7 +16,6 @@ def get_random_quote():
         "Make it count.",
         "Embrace the journey.",
         "Do the hard work, especially when you don't want to.",
-        "No pressure, no diamonds.",
         "Look the world straight in the eye.",
         "Take what you have and do the best you can with that.",
         "Focus on the future, attention on the present.",

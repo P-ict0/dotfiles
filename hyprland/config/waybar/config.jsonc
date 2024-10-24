@@ -56,7 +56,7 @@
         }
     },
 
-    "hyprland/workspaces": {
+"hyprland/workspaces": {
         "disable-scroll": true,
         "rotate": 0,
         "all-outputs": true,
@@ -67,9 +67,7 @@
         "on-scroll-down": "hyprctl dispatch workspace +1",
         "persistent-workspaces": {
         }
-    },
-
-"custom/quote": {
+    },"custom/quote": {
   "exec": "/usr/bin/python3 /home/rodri/scripts/get_random_quote.py",
   "format": "{}",
   "return-type": "json",

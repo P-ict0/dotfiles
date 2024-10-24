@@ -1,0 +1,10 @@
+
+"custom/dnd": {
+  "exec": "$HOME/scripts/wbar/dnd_status.sh",
+  "interval": 2,
+  "return-type": "json",
+  "tooltip": false,
+  "on-click": "$HOME/scripts/toggle_dnd.sh",
+  "format": "{}",
+}
+  
