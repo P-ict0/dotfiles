@@ -1,0 +1,7 @@
+"custom/weather": {
+  "format": "{}°",
+  "tooltip": true,
+  "interval": 3600,
+  "exec": "/usr/bin/wttrbar --nerd --location $(geoiplookup $(curl -s ifconfig.me) | awk -F', ' '/City Edition/ {print $5}')",
+  "return-type": "json"
+},

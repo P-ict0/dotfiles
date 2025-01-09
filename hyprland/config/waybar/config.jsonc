@@ -15,13 +15,20 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/l_end","custom/quote","custom/r_end","custom/padd"],
+	"modules-left": ["custom/padd","custom/l_end","custom/weather","custom/r_end","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/l_end","hyprland/workspaces","custom/r_end","custom/padd"],
 	"modules-center": ["custom/padd","custom/l_end","custom/spotify","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","privacy","tray","pulseaudio","custom/r_end","custom/l_end","backlight","battery","custom/r_end","custom/l_end","custom/wallchange","custom/keybindhint","custom/cliphist","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
 
+"custom/weather": {
+  "format": "{}°",
+  "tooltip": true,
+  "interval": 3600,
+  "exec": "/usr/bin/wttrbar --nerd --location $(geoiplookup $(curl -s ifconfig.me) | awk -F', ' '/City Edition/ {print $5}')",
+  "return-type": "json"
+},
     "idle_inhibitor": {
         "format": "{icon}",
         "rotate": 0,
@@ -67,13 +74,7 @@
         "on-scroll-down": "hyprctl dispatch workspace +1",
         "persistent-workspaces": {
         }
-    },"custom/quote": {
-  "exec": "/usr/bin/python3 /home/rodri/scripts/get_random_quote.py",
-  "format": "{}",
-  "return-type": "json",
-  "interval": 1800,
-},
-"custom/spotify": {
+    },"custom/spotify": {
   "exec": "/usr/bin/python3 /home/rodri/scripts/mediaplayer.py --player spotify",
   "format": "{}",
   "return-type": "json",
