@@ -35,14 +35,12 @@ def write_output(track, artist, playing, player):
     else:
         output = "<b>Nothing playing</b>"
 
-    # Prepare the output dictionary
     output = {
         "text": output,
         "class": "custom-" + player.props.player_name,
         "alt": player.props.player_name,
     }
 
-    # Write the output as JSON to stdout
     sys.stdout.write(json.dumps(output) + "\n")
     sys.stdout.flush()
 
