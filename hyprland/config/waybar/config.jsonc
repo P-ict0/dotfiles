@@ -140,16 +140,25 @@
     "scroll-step": 5
 },
 
-    "backlight": {
-        "device": "intel_backlight",
-        "rotate": 0,
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-up": "brightnessctl set 1%+",
-        "on-scroll-down": "brightnessctl set 1%-",
-        "min-length": 6
-    },
-
+"backlight": {
+  "device": "intel_backlight",
+  "rotate": 0,
+  "format": "{icon} {percent}%",
+  "format-icons": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "on-scroll-up": "brightnessctl -d intel_backlight set 1%+ | brightnessctl -d nvidia_0 set 1%+",
+  "on-scroll-down": "brightnessctl -d intel_backlight set 1%- | brightnessctl -d nvidia_0 set 1%-",
+  "min-length": 6
+},
     "battery": {
         "states": {
             "good": 95,
