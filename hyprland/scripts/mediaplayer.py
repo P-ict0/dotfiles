@@ -12,12 +12,19 @@ import json
 logger = logging.getLogger(__name__)
 quote_timer_id = None  # Global variable to keep track of the quote timer
 
+# Default variables (can be overridden by command-line arguments)
+prefix_playing = ""
+prefix_paused = "  "
+max_length_module = 70  # Maximum combined length of track + artist
+standby_text = "  Music"
+
 
 def write_output(track, artist, playing, player):
     logger.info("Writing output")
 
-    output = "" if playing else "  "
-    max_length = 70  # Maximum combined length of track + artist
+    # Use the appropriate prefix based on playback status
+    output = prefix_playing if playing else prefix_paused
+    max_length = max_length_module
 
     # Calculate the total length and truncate track if necessary
     total_length = len(track) + len(artist)
@@ -81,9 +88,9 @@ def on_player_appeared(manager, player, selected_player=None):
 def on_player_vanished(manager, player, loop):
     logger.info("Player has vanished")
     output = {
-        "text": "  Spotify",
+        "text": standby_text,
         "class": "custom-nothing-playing",
-        "alt": "spotify-closed",
+        "alt": "player-closed",
     }
 
     sys.stdout.write(json.dumps(output) + "\n")
@@ -103,25 +110,67 @@ def signal_handler(sig, frame):
     logger.debug("Received signal to stop, exiting")
     sys.stdout.write("\n")
     sys.stdout.flush()
-    # loop.quit()
     sys.exit(0)
 
 
 def parse_arguments():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="A media player status tool with customizable display options."
+    )
 
     # Increase verbosity with every occurrence of -v
-    parser.add_argument("-v", "--verbose", action="count", default=0)
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="count",
+        default=0,
+        help="Increase output verbosity (e.g. -v, -vv)",
+    )
 
     # Define for which player we're listening
-    parser.add_argument("--player")
+    parser.add_argument("--player", help="Specify the player to listen to.")
+
+    # Customizable display options
+    parser.add_argument(
+        "--prefix-playing",
+        type=str,
+        default=prefix_playing,
+        help="Prefix displayed when media is playing (default: '%s')" % prefix_playing,
+    )
+    parser.add_argument(
+        "--prefix-paused",
+        type=str,
+        default=prefix_paused,
+        help="Prefix displayed when media is paused (default: '%s')" % prefix_paused,
+    )
+    parser.add_argument(
+        "--max-length",
+        type=int,
+        default=max_length_module,
+        help="Maximum combined length of track and artist (default: %d)"
+        % max_length_module,
+    )
+    parser.add_argument(
+        "--standby-text",
+        type=str,
+        default=standby_text,
+        help="Text to display when no player is active (default: '%s')" % standby_text,
+    )
 
     return parser.parse_args()
 
 
 def main():
+    global prefix_playing, prefix_paused, max_length_module, standby_text
+
     arguments = parse_arguments()
     player_found = False
+
+    # Override defaults with command-line arguments if provided
+    prefix_playing = arguments.prefix_playing
+    prefix_paused = arguments.prefix_paused
+    max_length_module = arguments.max_length
+    standby_text = arguments.standby_text
 
     # Initialize logging
     logging.basicConfig(
@@ -130,11 +179,9 @@ def main():
         format="%(name)s %(levelname)s %(message)s",
     )
 
-    # Logging is set by default to WARN and higher.
-    # With every occurrence of -v it's lowered by one
+    # Set logging level based on verbosity
     logger.setLevel(max((3 - arguments.verbose) * 10, 0))
 
-    # Log the sent command line arguments
     logger.debug("Arguments received {}".format(vars(arguments)))
 
     manager = Playerctl.PlayerManager()
@@ -161,12 +208,12 @@ def main():
         init_player(manager, player)
         player_found = True
 
-    # If no player is found, generate a random string and display it
+    # If no player is found, generate the standby output
     if not player_found:
         output = {
-            "text": "  Spotify",
+            "text": standby_text,
             "class": "custom-nothing-playing",
-            "alt": "spotify-closed",
+            "alt": "player-closed",
         }
 
         sys.stdout.write(json.dumps(output) + "\n")
